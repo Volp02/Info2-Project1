@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 #include "readFile.h"
 #include "calculateGini.h"
 
@@ -45,6 +46,9 @@ int main()
 
     }
 
+
+
+
     //ONLY FOR DEBUGGING \/:
     Passenger* lastPassenger = new Passenger{ -1, false, 0, false, 0, 0, 0, 0.0 }; // Add last Passenger (Dummie)
     data.push_back(*lastPassenger); // Add the last passenger to the data vector
@@ -74,4 +78,5 @@ int main()
 
     cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
 
-    return 0;float calcBinaryGini(float P);}
+    return 0;
+}

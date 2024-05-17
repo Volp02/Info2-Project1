@@ -11,6 +11,8 @@ struct Passenger;
  *
  * @param dataSet A vector of Passenger structs containing information about passengers.
  * @return The proportion of passengers who survived (between 0.0 and 1.0).
+ * 
+ * calculates Gini index for binary classification
  */
 float calcSurvProp(const std::vector<Passenger>& data);
 

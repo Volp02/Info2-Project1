@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 #include "readFile.h"
 #include "calculateSurvivalProp.h"
 
@@ -45,9 +44,6 @@ int main()
         }
 
     }
-
-
-
 
     //ONLY FOR DEBUGGING \/:
     Passenger* lastPassenger = new Passenger{ -1, false, 0, false, 0, 0, 0, 0.0 }; // Add last Passenger (Dummie)

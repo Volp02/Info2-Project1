@@ -18,6 +18,9 @@
 *.Project1.vcxproj
 *.Project1.snl
 
+*.tmp
+
+
 # Ignore compiler and IDE settings files
 .vscode/
 .gitignore

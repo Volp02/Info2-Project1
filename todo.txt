@@ -23,3 +23,31 @@
 3. Vorhersage treffen (Inferenz)
     3.1 Einlesen der Daten der zu testenden Person
     3.2 Durchlaufen des Entscheidungsbaums und Treffen einer Vorhersage basierend auf den Attributen der Person
+
+
+
+
+Next Step in Implementing the CART Algorithm
+Based on your understanding and the provided information, the next step in implementing the CART algorithm would be to:
+
+1. Sort the data by the chosen attribute:
+
+Select the attribute you want to use for splitting the data. This could be any of the available attributes like Age, Sex, Pclass, etc.
+Sort the data vector based on the values of the chosen attribute.
+2. Calculate the Gini impurity for each possible split:
+
+Iterate through the sorted data and consider each possible split point. A split point is a value between two consecutive data points in the sorted data.
+For each split point, calculate the Gini impurity of the resulting two subsets. This involves calculating the proportion of passengers who survived in each subset and using the formula for binary Gini impurity.
+3. Choose the split with the lowest Gini impurity:
+
+Compare the Gini impurity values for all possible splits.
+Select the split point that results in the lowest Gini impurity. This split will be the best split for the chosen attribute.
+4. Create a node in the decision tree:
+
+Create a node in the decision tree that represents the chosen split.
+The node should store the chosen attribute, the split point, and the resulting two subsets of data.
+5. Recursively apply the process to the subsets:
+
+For each of the two subsets created by the split, repeat the process of sorting, calculating Gini impurity, and choosing the best split.
+This will create a branch in the decision tree for each subset.
+Continue recursively applying the process until a stopping criterion is met, such as reaching a maximum depth or having subsets with only one class (all passengers survived or all died).

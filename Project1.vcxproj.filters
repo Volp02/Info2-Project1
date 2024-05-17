@@ -21,7 +21,10 @@
     <ClCompile Include="readFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calculateSurvivalProp.cpp">
+    <ClCompile Include="calculateGini.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CARTalgo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +38,10 @@
     <ClInclude Include="readFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="calculateSurvivalProp.h">
+    <ClInclude Include="calculateGini.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CARTalgo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

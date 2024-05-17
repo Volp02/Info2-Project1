@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CARTalgo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="readFile.cpp" />
-    <ClCompile Include="calculateSurvivalProp.cpp" />
+    <ClCompile Include="calculateGini.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="calculateSurvivalProp.h" />
+    <ClInclude Include="calculateGini.h" />
+    <ClInclude Include="CARTalgo.h" />
     <ClInclude Include="readFile.h" />
   </ItemGroup>
   <ItemGroup>

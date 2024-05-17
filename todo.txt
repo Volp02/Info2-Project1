@@ -1,0 +1,25 @@
+1.[✓] Einlesen und Vorverarbeitung
+    1.1 [✓] Einlesen der Daten aus titanic.csv
+    1.2 [✓] Speichern der Daten in einer geeigneten Datenstruktur:
+        linked-list
+        vector<tuple<Num(int),Survived(bool),Pclass(int),Sex(bool),Age(int)Siblings(int),Parents(int),Fare(float)>>
+        oder struct (ist wahrscheinlich einfacher...)
+
+    1.2.2 [✓] Strukturieren der Daten:
+        - Entfernen von irrelevanten Spalten -> Name
+        - trennen der datenpunkte (daten sind durch , getrennt)
+
+2. Entscheidungsbaum erstellen (Training)
+    2.1 Einlesen der Hyperparameter des Algorithmus (maximale Tiefe des Baumes)
+    2.2 Implementierung des CART-Algorithmus:
+        2.2.1 Berechnung des Gini-Index für ein Attribut
+            [✓] Berechnung wahrscheinlich überleben
+        2.2.2 Auswahl des Attributs mit dem niedrigsten Gini-Index
+        2.2.3 Aufteilen des Arrays
+        2.2.4 Rekursive Anwendung
+
+    2.3 = Trainieren des Entscheidungsbaums mit den Trainingsdaten
+
+3. Vorhersage treffen (Inferenz)
+    3.1 Einlesen der Daten der zu testenden Person
+    3.2 Durchlaufen des Entscheidungsbaums und Treffen einer Vorhersage basierend auf den Attributen der Person

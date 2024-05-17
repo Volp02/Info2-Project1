@@ -7,7 +7,7 @@ using namespace std;
 
 
 #include "readFile.h"
-#include "calculateSurvivalProp.h"
+#include "calculateGini.h"
 
 //test
 
@@ -76,5 +76,6 @@ int main()
     cout << "CalculateSurvivalProp:" << calcSurvProp(data) << endl;
     //implement CART Algorithm
 
-    return 0;
-}
+    cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
+
+    return 0;float calcBinaryGini(float P);}

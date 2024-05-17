@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "readFile.h"
+#include "readFile.h" // Include the header file for the Passenger struct
 
 // Forward declaration of Passenger struct
 struct Passenger;
@@ -13,3 +13,5 @@ struct Passenger;
  * @return The proportion of passengers who survived (between 0.0 and 1.0).
  */
 float calcSurvProp(const std::vector<Passenger>& data);
+
+float calcBinaryGini(float P);

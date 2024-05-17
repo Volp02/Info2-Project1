@@ -7,9 +7,7 @@ using namespace std;
 
 # include "readFile.h"
 
-//testing
-
-//testin 2
+//test
 
 int main()
 {

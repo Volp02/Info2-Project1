@@ -14,6 +14,10 @@
 *.c_cpp_properties.json
 *.settings.json
 
+*.Project1.vcxproj.filters
+*.Project1.vcxproj
+*.Project1.snl
+
 # Ignore compiler and IDE settings files
 .vscode/
 .gitignore

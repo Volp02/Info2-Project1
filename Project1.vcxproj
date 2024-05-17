@@ -129,8 +129,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="readFile.cpp" />
+    <ClCompile Include="calculateSurvivalProp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calculateSurvivalProp.h" />
     <ClInclude Include="readFile.h" />
   </ItemGroup>
   <ItemGroup>

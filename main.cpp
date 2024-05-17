@@ -5,7 +5,9 @@
 
 using namespace std;
 
-# include "readFile.h"
+
+#include "readFile.h"
+#include "calculateSurvivalProp.h"
 
 //test
 
@@ -71,8 +73,7 @@ int main()
 
     }
 
-
-
+    cout << "CalculateSurvivalProp:" << calcSurvProp(data) << endl;
     //implement CART Algorithm
 
     return 0;

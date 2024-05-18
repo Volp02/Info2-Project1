@@ -51,8 +51,8 @@ int main()
 
 
     //ONLY FOR DEBUGGING \/:
-    Passenger* lastPassenger = new Passenger{ -1, false, 0, false, 0, 0, 0, 0.0 }; // Add last Passenger (Dummie)
-    data.push_back(*lastPassenger); // Add the last passenger to the data vector
+    //Passenger* lastPassenger = new Passenger{ -1, false, 0, false, 0, 0, 0, 0.0 }; // Add last Passenger (Dummie)
+    //data.push_back(*lastPassenger); // Add the last passenger to the data vector
 
     ////cout<<"age of 23 passemger: " << data[22].Age<< endl;
     ////cout<<"Num of 23 passemger: " << data[22].Num << endl;
@@ -61,7 +61,7 @@ int main()
 
     //Testing: print all passengers
 
-    for (int i = 0; data[i].Num > 0; i++) {
+    /*for (int i = 0; i < data.size() - 1; i++) {
         cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;
         cout << "Class of: " << i << ": " << data[i].Pclass << endl;
@@ -73,6 +73,7 @@ int main()
         cout << endl;
 
     }
+    */
 
     cout << "CalculateSurvivalProp:" << calcSurvProp(data) << endl;
     //implement CART Algorithm
@@ -80,34 +81,36 @@ int main()
     cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
 
 
-    sortVectorAttribute(data, 1);
+    data = sortVectorAttribute(data, 1);
 
-    for (int i = 0; data[i].Num > 0; i++) {
-        cout << "age of: " << i << ": " << data[i].Age << endl;
+    for (int i = 0; i < data.size() - 1; i++) {
+        //cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;
         cout << "Class of: " << i << ": " << data[i].Pclass << endl;
-        cout << "Survived of: " << i << ": " << data[i].Surv << endl;
-        cout << "Sex of: " << i << ": " << data[i].Sex << endl;
-        cout << "Sibsp of: " << i << ": " << data[i].Sibl << endl;
-        cout << "Parch of: " << i << ": " << data[i].Paren << endl;
-        cout << "Fare of: " << i << ": " << data[i].Fare << endl;
+        //cout << "Survived of: " << i << ": " << data[i].Surv << endl;
+        //cout << "Sex of: " << i << ": " << data[i].Sex << endl;
+        //cout << "Sibsp of: " << i << ": " << data[i].Sibl << endl;
+        //cout << "Parch of: " << i << ": " << data[i].Paren << endl;
+        //cout << "Fare of: " << i << ": " << data[i].Fare << endl;
         cout << endl;
 
     }
 
-        sortVectorAttribute(data, 2);
+   /* data = sortVectorAttribute(data, 2);
 
-    for (int i = 0; data[i].Num > 0; i++) {
-        cout << "age of: " << i << ": " << data[i].Age << endl;
+    for (int i = 0; i < data.size() - 1; i++) {
+        //cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;
-        cout << "Class of: " << i << ": " << data[i].Pclass << endl;
-        cout << "Survived of: " << i << ": " << data[i].Surv << endl;
+        //cout << "Class of: " << i << ": " << data[i].Pclass << endl;
+        //cout << "Survived of: " << i << ": " << data[i].Surv << endl;
         cout << "Sex of: " << i << ": " << data[i].Sex << endl;
-        cout << "Sibsp of: " << i << ": " << data[i].Sibl << endl;
-        cout << "Parch of: " << i << ": " << data[i].Paren << endl;
-        cout << "Fare of: " << i << ": " << data[i].Fare << endl;
+        //cout << "Sibsp of: " << i << ": " << data[i].Sibl << endl;
+        //cout << "Parch of: " << i << ": " << data[i].Paren << endl;
+        //cout << "Fare of: " << i << ": " << data[i].Fare << endl;
         cout << endl;
 
     }
+    */
+
     return 0;
 }

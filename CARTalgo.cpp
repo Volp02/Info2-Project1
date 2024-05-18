@@ -10,8 +10,8 @@ std::vector<Passenger> swapNext(const std::vector<Passenger>& data, int i) {
     swapedData.assign(data.begin(), data.end());
 
     Passenger tmp = swapedData[i];
-    std::cout << "swapped Num: " << swapedData[i].Num << " <> " << swapedData[i + 1].Num << std::endl;
-    std::cout << "swapped: " << swapedData[i].Pclass << " <> " << swapedData[i + 1].Pclass << std::endl;
+    //std::cout << "swapped Num: " << swapedData[i].Num << " <> " << swapedData[i + 1].Num << std::endl;
+    //std::cout << "swapped: " << swapedData[i].Pclass << " <> " << swapedData[i + 1].Pclass << std::endl;
     swapedData[i] = swapedData[i + 1];
     swapedData[i + 1] = tmp;
         
@@ -42,10 +42,6 @@ std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger>& data, i
             }
 
             if (!swapped) break; // If no swaps in this pass, the array is already sorted
-        }
-
-        for (int i = 0; i < sortedData.size(); i++) { // Correct loop condition for printing
-            std::cout << sortedData[i].Num << ": " << sortedData[i].Pclass << std::endl;
         }
 
 

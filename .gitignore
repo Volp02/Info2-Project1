@@ -143,3 +143,5 @@ ipch/
 
 # Visual Studio Trace Files
 *.e2e
+/.vs/Project1/FileContentIndex
+/.vs/Project1/v17

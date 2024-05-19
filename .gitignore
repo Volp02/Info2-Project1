@@ -145,3 +145,6 @@ ipch/
 *.e2e
 /.vs/Project1/FileContentIndex
 /.vs/Project1/v17
+/.vs/Info2-Project1/FileContentIndex
+/.vs
+/.gitignore

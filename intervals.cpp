@@ -43,8 +43,8 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
     cout << endl << "--------------------" << endl;
     return minGini;
 
-    //vector für linke seite
-    //vector für rechte seite
+    //vector fï¿½r linke seite
+    //vector fï¿½r rechte seite
 
 }
 

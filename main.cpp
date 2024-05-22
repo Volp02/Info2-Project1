@@ -84,10 +84,16 @@ int main()
     cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
 
 
+
     vector<Passenger> data2 = sortVectorAttribute(data, 2);
 
     /* for (int i = 0; i < data.size() - 1; i++)
     {
+=======
+    //data = sortVectorAttribute(data, 1);
+    /*
+    for (int i = 0; i < data.size() - 1; i++) {
+
         //cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;
         cout << "Class of: " << i << ": " << data[i].Pclass << endl;

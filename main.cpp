@@ -11,6 +11,7 @@ using namespace std;
 #include "readFile.h"
 #include "calculateGini.h"
 #include "CARTalgo.h"
+#include "intervals.h"
 
 //test
 

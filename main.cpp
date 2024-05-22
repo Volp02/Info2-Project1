@@ -85,14 +85,57 @@ int main()
 
     cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
 
-    vector<Passenger> data2 = sortVectorAttribute(data, 2);
+
+    vector<Passenger> data2 = sortVectorAttribute(data, 1);
+    cout << "Sort dataset by Attruibute 1 (Pclass)"<< endl;
+
+
+
+    /*
+    for (int i = 0; i < data2.size() - 1; i++) {
+        //cout << "age of: " << i << ": " << data2[i].Age << endl;
+        cout << "Num of: " << i << ": " << data2[i].Num << endl;
+        cout << "Class of: " << i << ": " << data2[i].Pclass << endl;
+        //cout << "Survived of: " << i << ": " << data2[i].Surv << endl;
+        //cout << "Sex of: " << i << ": " << data2[i].Sex << endl;
+        //cout << "Sibsp of: " << i << ": " << data2[i].Sibl << endl;
+        //cout << "Parch of: " << i << ": " << data2[i].Paren << endl;
+        //cout << "Fare of: " << i << ": " << data2[i].Fare << endl;
+        cout << endl;
+
+    }
+    */
+
+    data2 = sortVectorAttribute(data2, 3);
+    cout << "Sort dataset by Attruibute 3 (Age)"<< endl;
+
+
+
+    /*
+    for (int i = 0; i < data2.size() - 1; i++) {
+        cout << "age of: " << i << ": " << data2[i].Age << endl;
+        cout << "Num of: " << i << ": " << data2[i].Num << endl;
+        //cout << "Class of: " << i << ": " << data2[i].Pclass << endl;
+        //cout << "Survived of: " << i << ": " << data2[i].Surv << endl;
+        //cout << "Sex of: " << i << ": " << data2[i].Sex << endl;
+        //cout << "Sibsp of: " << i << ": " << data2[i].Sibl << endl;
+        //cout << "Parch of: " << i << ": " << data2[i].Paren << endl;
+        //cout << "Fare of: " << i << ": " << data2[i].Fare << endl;
+        cout << endl;
+
+    }
+    */
 
     //splitVector(data, 1);
     //vector<Passenger> data3 = splitVector(data, 1).linkeSeite;
     minGiniAttribute(data, 1);
     cout << "Gini afer Sort and Split: " << minGiniAttribute(data, 1).gini << endl;
 
-    
+   
+    calcMin tmp;
+    tmp = minGiniAttribute(data,1);
+    cout<<"gini 2 Ebene 1:" <<(minGiniAttribute(tmp.linkeSeite,1)).gini <<endl;
+    cout<<"gini 2 Ebene 2:" <<(minGiniAttribute(tmp.rechteSeite,1)).gini <<endl;
     return 0;
 }
 

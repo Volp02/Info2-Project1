@@ -23,7 +23,7 @@ vector<std::vector<Passenger>> splitVector(const std::vector<Passenger> &data, i
 
     return splitInfo;
 
-    //vector für linke seite
-    //vector für rechte seite
+    //vector fï¿½r linke seite
+    //vector fï¿½r rechte seite
 
 }

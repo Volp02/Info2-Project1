@@ -14,9 +14,9 @@
     2.2 Implementierung des CART-Algorithmus:
         2.2.1 Berechnung des Gini-Index für ein Attribut
             [✓] Berechnung wahrscheinlich überleben
-        2.2.2 Auswahl des Attributs mit dem niedrigsten Gini-Index
-        2.2.3 Aufteilen des Arrays
-        2.2.4 Rekursive Anwendung
+        2.2.2 [✓]Auswahl des Attributs mit dem niedrigsten Gini-Index
+        2.2.3 [✓]Aufteilen des Vectors
+        2.2.4 [ ]Rekursive Anwendung
 
     2.3 = Trainieren des Entscheidungsbaums mit den Trainingsdaten
 

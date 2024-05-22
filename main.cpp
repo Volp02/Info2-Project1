@@ -87,7 +87,7 @@ int main()
 
 
     vector<Passenger> data2 = sortVectorAttribute(data, 1);
-    cout << "Sort dataset by Attruibute 1 (Pclass)"<< endl;
+    //cout << "Sort dataset by Attruibute 1 (Pclass)"<< endl;
 
 
 
@@ -107,7 +107,7 @@ int main()
     */
 
     data2 = sortVectorAttribute(data2, 3);
-    cout << "Sort dataset by Attruibute 3 (Age)"<< endl;
+    //cout << "Sort dataset by Attruibute 3 (Age)"<< endl;
 
 
 

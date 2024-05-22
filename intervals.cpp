@@ -1,9 +1,9 @@
-#include <vector>
-#include <iostream>
-#include "calculateGini.h"
-#include "CARTalgo.h"
 #include "intervals.h"
+#include "CARTalgo.h"
+#include "calculateGini.h"
 #include "readFile.h" // Include the header file for the Passenger struct
+#include <iostream>
+#include <vector>
 
 #define dimensions 3
 
@@ -15,18 +15,13 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
     std::vector<Passenger> linkeSeite;
     std::vector<Passenger> rechteSeite;
 
-    std::vector<Passenger> *linkeSeitePtr = &linkeSeite;
-    std::vector<Passenger> *rechteSeitePtr = &rechteSeite;
-
-    std::vector < std::vector < Passenger>> splitInfo{linkeSeitePtr, rechteSeitePtr };
-
-    calcMin minGini;
-    minGini.attribute = attribute;
+    calcMin minGini;                    //create struct to store min gini
+    minGini.attribute = attribute;      //store attribute in struct
 
     for (int i = 1; i < sizeof(data); i++)
     {
         linkeSeite.assign(data.begin(), data.end() - sizeof(data) - i);
-        rechteSeite.assign(data.begin()+i, data.end());
+        rechteSeite.assign(data.begin() + i, data.end());
 
         float tmp_gini = calcBinaryGini(calcSurvProp(linkeSeite));
 
@@ -36,37 +31,34 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
             minGini.rechteSeite = rechteSeite;
             minGini.gini = tmp_gini;
         }
-        std::cout << "tmpgini: " << tmp_gini << std::endl;
-
+        //std::cout << "tmpgini: " << tmp_gini << std::endl;
     }
-    cout << endl << endl << "min gini: " << minGini.gini;
-    cout << endl << "--------------------" << endl;
+    //cout << endl << endl << "min gini: " << minGini.gini;
+    //cout << endl << "--------------------" << endl;
     return minGini;
-
-    //vector f�r linke seite
-    //vector f�r rechte seite
 
 }
 
-calcMin minGiniAttribute(const std::vector<Passenger> &data,int placement)
+calcMin minGiniAttribute(const std::vector<Passenger> &data, int placement)
 {
     std::vector<Passenger> helperVector;
 
     calcMin tempGini;
-    calcMin returnGini1, returnGini2, returnGini3;
+    calcMin returnGini1; //,returnGini2, returnGini3;
 
 
     for (int attr = 1; attr <= 6; attr++)
     {
-        helperVector = sortVectorAttribute(data, attr);  
-        tempGini =  splitVector(helperVector, attr);
+        helperVector = sortVectorAttribute(data, attr);
+        tempGini = splitVector(helperVector, attr);
 
-          if (tempGini.gini < returnGini1.gini)
-          {
-              returnGini1 = tempGini;
-          }
-     }
+        if (tempGini.gini < returnGini1.gini)
+        {
+            returnGini1 = tempGini;
+        }
+    }
 
+    /*
     switch (placement)
   
 {
@@ -84,6 +76,6 @@ calcMin minGiniAttribute(const std::vector<Passenger> &data,int placement)
         return returnGini3;
     }
     }
-
-
+    */
+    return returnGini1;
 }

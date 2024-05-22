@@ -17,6 +17,8 @@ using namespace std;
 
 int main()
 {
+
+    
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -88,6 +90,9 @@ int main()
     //splitVector(data, 1);
     //vector<Passenger> data3 = splitVector(data, 1).linkeSeite;
     minGiniAttribute(data, 1);
+    cout << "Gini afer Sort and Split: " << minGiniAttribute(data, 1).gini << endl;
+
+    
     return 0;
 }
 

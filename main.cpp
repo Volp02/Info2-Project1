@@ -85,7 +85,7 @@ int main()
 
 
     //data = sortVectorAttribute(data, 1);
-
+    /*
     for (int i = 0; i < data.size() - 1; i++) {
         //cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;

@@ -84,9 +84,10 @@ int main()
     cout << "GiniImpurity:" << calcBinaryGini(calcSurvProp(data)) << endl;
 
 
-    //data = sortVectorAttribute(data, 1);
+    vector<Passenger> data2 = sortVectorAttribute(data, 2);
 
-    for (int i = 0; i < data.size() - 1; i++) {
+    /* for (int i = 0; i < data.size() - 1; i++)
+    {
         //cout << "age of: " << i << ": " << data[i].Age << endl;
         cout << "Num of: " << i << ": " << data[i].Num << endl;
         cout << "Class of: " << i << ": " << data[i].Pclass << endl;
@@ -114,7 +115,7 @@ int main()
 
     }
     */
-
+    /*
     std::vector<Passenger> testData;
     testData.assign(data.begin(), data.end()-400);  //testing with smaller dataset
 
@@ -131,8 +132,11 @@ int main()
         //cout << "Fare of: " << i << ": " << data[i].Fare << endl;
         cout << endl;
         }
+    */
 
-
+    //splitVector(data, 1);
+    //vector<Passenger> data3 = splitVector(data, 1).linkeSeite;
+    minGiniAttribute(data, 1);
     return 0;
 }
 

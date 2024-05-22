@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="intervals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="calculateGini.cpp" />
@@ -135,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="calculateGini.h" />
     <ClInclude Include="CARTalgo.h" />
+    <ClInclude Include="intervals.h" />
     <ClInclude Include="readFile.h" />
   </ItemGroup>
   <ItemGroup>

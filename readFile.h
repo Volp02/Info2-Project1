@@ -1,6 +1,7 @@
 #pragma once
 #pragma once
 
+#include <vector>
 /**
  * @file readFile.h
  *
@@ -25,3 +26,4 @@ struct Passenger {
 };
 
 Passenger* readFile(int line);
+bool importData(std::vector<Passenger> &data);

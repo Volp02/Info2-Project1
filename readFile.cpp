@@ -27,7 +27,7 @@ Passenger* readFile(int line)
 
     if (!data.is_open()) {
         std::cerr << "Error opening file!" << std::endl;
-        return new Passenger{ -1, false, 0, false, 0, 0, 0, 0.0 };
+        return nullptr;
     }
     
     for (int i = 0; i <= line; i++)     // skip unwanted lines
@@ -142,4 +142,36 @@ int findComma(string Input)
 string readBetween(string Input, int x1, int x2)
 {
     return Input.substr(x1, x2 - x1);
+}
+
+bool importData(std::vector<Passenger> &data)
+{
+    data.clear();
+
+    Passenger *currentPassenger = readFile(1); // Read the first passenger
+    if (currentPassenger->Num < 0)
+    {
+        cout << "An error occurred: " << currentPassenger->Num; // Error message if reading fails
+        return false;                                           // Signal an error occurred
+    }
+
+    while (currentPassenger != nullptr)
+    {
+        data.push_back(*currentPassenger); // Add passenger to the vector
+
+        int nextPassengerNum = currentPassenger->Num + 1; // Calculate the number of the next passenger
+        delete currentPassenger;                          // Deallocate memory before reading the next
+        //cout << nextPassengerNum << endl;
+        currentPassenger = readFile(nextPassengerNum); // Read the next passenger
+
+        // Check for errors after reading, before potentially adding another invalid passenger
+        if (currentPassenger != nullptr && currentPassenger->Num < 0)
+        {
+            cout << "An error occurred: " << currentPassenger->Num;
+            delete currentPassenger;
+            return false;
+        }
+    }
+
+    return true; // Signal successful read
 }

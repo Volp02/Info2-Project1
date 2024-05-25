@@ -2,26 +2,22 @@
 
 
 bool createTreeNode(int attribute, float SplitValue, TreeNode *prevNode)
-{
-    //creates Node to tree, retruns if a leaf was created or not (leaf == false)
+{   
+    if (prevNode->isLeaf){  //If previous Node is a leaf, return false -> return false when leaf
+        return false;
+    }
+    
     TreeNode *newNode = new TreeNode();
 
     newNode->attribute = attribute;
     newNode->SplitValue = SplitValue;
 
     newNode->prev = prevNode;
-    if (prevNode != nullptr)
+    if (!prevNode->isLeaf)
     {
         // Decide whether to attach newNode as left or right child
-        if (SplitValue < prevNode->SplitValue)
-        {
-            prevNode->left = newNode;
-        }
-        else
-        {
-            prevNode->right = newNode;
-        }
-    }
 
-    return false;
+    }
+    //node was sucessfully created -> return true
+    return true;
 }

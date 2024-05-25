@@ -3,23 +3,6 @@
 #include <iostream>
 #include <vector>
 
-
-std::vector<Passenger> swapNext(const std::vector<Passenger> &data, int i)
-{
-
-    std::vector<Passenger> swapedData;
-    swapedData.assign(data.begin(), data.end());
-
-    Passenger tmp = swapedData[i];
-    //std::cout << "swapped Num: " << swapedData[i].Num << " <> " << swapedData[i + 1].Num << std::endl;
-    //std::cout << "swapped: " << swapedData[i].Pclass << " <> " << swapedData[i + 1].Pclass << std::endl;
-    swapedData[i] = swapedData[i + 1];
-    swapedData[i + 1] = tmp;
-
-    return swapedData;
-}
-
-
 std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger> &data, int attribute)
 {
 

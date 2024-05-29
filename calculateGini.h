@@ -17,3 +17,5 @@ struct Passenger;
 float calcSurvProp(const std::vector<Passenger>& data);
 
 float calcBinaryGini(float P);
+
+float calcWeigtedGini(const std::vector<Passenger> &leftSide, const std::vector<Passenger> &rightSide);

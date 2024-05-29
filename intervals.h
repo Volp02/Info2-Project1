@@ -19,7 +19,7 @@ struct calcMin
 calcMin splitVector(const std::vector<Passenger> &data, int attribute); // Function declaration for the splitVector function
 //SplitVector returns split vector with smalles gini value
 
-calcMin minGiniAttribute(const std::vector<Passenger> &data, int placement);
+calcMin minGiniAttribute(const std::vector<Passenger> &data);
 //minGiniAttribute returns the vector sorted by attribute and split with the smallest resulting gini value
 //with placement returns the 1, 2 or 3 best option (to be implemented)
 

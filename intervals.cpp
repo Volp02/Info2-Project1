@@ -11,84 +11,46 @@ using namespace std;
 
 calcMin splitVector(const std::vector<Passenger> &data, int attribute)
 {
-    std::vector<Passenger> sortedData;
-    std::vector<Passenger> linkeSeite;
-    std::vector<Passenger> rechteSeite;
 
-    calcMin minGini;                    //create struct to store min gini
-    minGini.attribute = attribute;      //store attribute in struct
-    if(sizeof(data) == 0){return minGini;}
-    for (int i = 1; i < sizeof(data); i++)
+    calcMin minGini;
+    minGini.attribute = attribute;
+    minGini.gini = 1.0;
+
+    for (int i = 1; i < data.size(); ++i)
     {
-        linkeSeite.assign(data.begin(), data.end() - sizeof(data) - i);
-        rechteSeite.assign(data.begin() + i, data.end());
+        vector<Passenger> left(data.begin(), data.begin() + i);
+        vector<Passenger> right(data.begin() + i, data.end());
+        float weightedGini = calcWeigtedGini(left, right);
 
-        float tmp_gini = calcBinaryGini(calcSurvProp(linkeSeite));
-
-        if (tmp_gini < minGini.gini)
+        if (weightedGini < minGini.gini)
         {
-            minGini.linkeSeite = linkeSeite;
-            minGini.rechteSeite = rechteSeite;
-            minGini.gini = tmp_gini;
+            minGini.linkeSeite = left;
+            minGini.rechteSeite = right;
+            minGini.gini = weightedGini;
         }
-        //std::cout << "tmpgini: " << tmp_gini << std::endl;
     }
-    //cout << endl << endl << "min gini: " << minGini.gini;
-    //cout << endl << "--------------------" << endl;
-
-    //debugging:
-
-    /* if (sizeof(minGini.linkeSeite) < 50)
-    {
-        std::cout << "Vector kleiner 2!" << std::endl;
-    }
-    if (sizeof(minGini.rechteSeite) < 50)
-    {
-        std::cout << "Vector kleiner 2!" << std::endl;
-    }
-    */
 
     return minGini;
+    
 
 }
 
-calcMin minGiniAttribute(const std::vector<Passenger> &data, int placement)
+calcMin minGiniAttribute(const std::vector<Passenger> &data)
 {
-    std::vector<Passenger> helperVector;
+    calcMin bestSplit;
+    bestSplit.gini = 1.0;
 
-    calcMin tempGini;
-    calcMin returnGini1; //,returnGini2, returnGini3;
-
-
-    for (int attr = 1; attr <= 6; attr++)
+    for (int attr = 1; attr <= 6; ++attr)
     {
-        helperVector = sortVectorAttribute(data, attr);
-        tempGini = splitVector(helperVector, attr);
+        vector<Passenger> sortedData = sortVectorAttribute(data, attr);
+        calcMin split = splitVector(sortedData, attr);
 
-        if (tempGini.gini < returnGini1.gini)
+        if (split.gini < bestSplit.gini)
         {
-            returnGini1 = tempGini;
+            bestSplit = split;
         }
     }
 
-    /*
-    switch (placement)
-  
-{
-    case 1:
-    {
-        return returnGini1;
-    }
-    case 2:
-    {
-        return returnGini2;
-    }
-
-    case 3:
-    {
-        return returnGini3;
-    }
-    }
-    */
-    return returnGini1;
+    return bestSplit;
 }
+

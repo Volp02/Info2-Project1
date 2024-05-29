@@ -13,6 +13,8 @@ struct TreeNode
     float SplitValue;       //Value by what the data is split
     bool predSurvival;      //Tree class (True = Survives; False = does not Survive)
     float confidence;       //SurvProp of dataset (calcSurvProp())
+    float gini;             //Gini of dataset (calcGini())
+
 
     TreeNode *prev;             //anchor Node
     TreeNode *left = nullptr;   //Next tree with preSurvuval = false    defaults to nullptr

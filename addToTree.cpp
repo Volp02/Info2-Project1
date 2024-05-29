@@ -1,4 +1,5 @@
 #include "addToTree.h";
+#include "calculateGini.h"
 
 
 bool createTreeNode(int attribute, float SplitValue, TreeNode *prevNode)
@@ -9,15 +10,11 @@ bool createTreeNode(int attribute, float SplitValue, TreeNode *prevNode)
     
     TreeNode *newNode = new TreeNode();
 
+
     newNode->attribute = attribute;
     newNode->SplitValue = SplitValue;
+    newNode->gini = calcBinaryGini(newNode->confidence);
 
-    newNode->prev = prevNode;
-    if (!prevNode->isLeaf)
-    {
-        // Decide whether to attach newNode as left or right child
 
-    }
-    //node was sucessfully created -> return true
     return true;
 }

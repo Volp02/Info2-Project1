@@ -220,22 +220,22 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
 
     switch(prevNode->attribute){       //get the split value
         case 1:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Pclass;
+            prevNode->SplitValue = Split.linkeSeite.back().Pclass;
             break;
         case 2:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Sex;
+            prevNode->SplitValue = Split.linkeSeite.back().Sex;
             break;
         case 3:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Age;
+            prevNode->SplitValue = Split.linkeSeite.back().Age;
             break;  
         case 4:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Sibl;
+            prevNode->SplitValue = Split.linkeSeite.back().Sibl;
             break;  
         case 5:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Paren;
+            prevNode->SplitValue = Split.linkeSeite.back().Paren;
             break;  
         case 6:
-            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Fare;
+            prevNode->SplitValue = Split.linkeSeite.back().Fare;
             break;  
     }
 
@@ -243,18 +243,21 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
 
     leftNode->depth = prevNode->depth + 1;
     rightNode->depth = prevNode->depth + 1;
-
+    //std::cout << "Depth: " << prevNode->depth << std::endl;
     prevNode->left = leftNode;
     prevNode->right = rightNode;
 
     float tempGini = calcBinaryGini(calcSurvProp(data));
 
-    if (tempGini < 0.41)
-        std::cout << "Gini: " << calcBinaryGini(calcSurvProp(data)) << std::endl;
+    if (tempGini < 0.42)
+        std::cout << "Gini: " << tempGini << std::endl;
     else
-        std::cout << ".";
-   
+        //std::cout << tempGini<std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;<std::endl;
 
+    if(prevNode->SplitValue<2){
+        std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;
+    
+    }
     
     trainCart(leftNode, desiredDepth, Split.linkeSeite);
     trainCart(rightNode, desiredDepth, Split.rechteSeite);

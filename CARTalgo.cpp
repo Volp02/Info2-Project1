@@ -2,8 +2,14 @@
 //CARTalgo
 #include <iostream>
 #include <vector>
+#include "addToTree.h"      //for TreeNode
+#include "readFile.h"       //for Passenger struct
+#include "calculateGini.h"       //for minGiniAttribute and CalcProb
 
-std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger> &data, int attribute)
+using namespace std;
+
+
+vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribute)
 {
 
     std::vector<Passenger> sortedData;
@@ -168,4 +174,66 @@ std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger> &data, i
     }
 
     return sortedData;
+}
+
+bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
+    if (prevNode->isLeaf){
+        return false;
+    }
+    if (prevNode->depth >= desiredDepth) {        
+        prevNode->isLeaf = true;
+        return false;
+    }
+    if(calcBinaryGini(calcSurvProp(data))){
+        prevNode->isLeaf = true;
+        return false;
+    }
+
+    TreeNode *leftNode = new TreeNode();
+    TreeNode *rightNode = new TreeNode();
+
+    calcMin Split = minGiniAttribute(data, 1);
+
+    leftNode->prev = prevNode;
+    rightNode->prev = prevNode;
+
+    prevNode->attribute = Split.attribute;
+
+    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
+
+    switch(prevNode->attribute){       //get the split value
+        case 1:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Pclass;
+            break;
+        case 2:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Sex;
+            break;
+        case 3:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Age;
+            break;  
+        case 4:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Sibl;
+            break;  
+        case 5:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Paren;
+            break;  
+        case 6:
+            prevNode->SplitValue = Split.linkeSeite[sizeof(Split.linkeSeite) - 1].Fare;
+            break;  
+    }
+
+    prevNode->predSurvival = calcSurvProp(Split.linkeSeite) + calcSurvProp(Split.rechteSeite);
+
+    leftNode->depth = prevNode->depth + 1;
+    rightNode->depth = prevNode->depth + 1;
+
+    prevNode->left = leftNode;
+    prevNode->right = rightNode;
+
+
+    trainCart(leftNode, desiredDepth, Split.linkeSeite);
+    trainCart(rightNode, desiredDepth, Split.rechteSeite);
+
+    return true;
+
 }

@@ -14,6 +14,7 @@ using namespace std;
 
 int main()
 {
+    int desiredDepth = 0;
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -22,6 +23,50 @@ int main()
         cerr << "Error reading passenger data!" << endl;
         return 1; // Exit with an error code
     }
+
+    //create first tree node (root)
+
+    TreeNode *FirstTreeNode = new TreeNode();
+    FirstTreeNode->depth = 0;
+    FirstTreeNode->prev = nullptr;
+
+    calcMin FirstNode = minGiniAttribute(data, 1);
+    FirstTreeNode->attribute = FirstNode.attribute;
+
+    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
+
+    switch(FirstTreeNode->attribute){       //get the split value
+        case 1:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Pclass;
+            break;
+        case 2:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Sex;
+            break;
+        case 3:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Age;
+            break;  
+        case 4:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Sibl;
+            break;  
+        case 5:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Paren;
+            break;  
+        case 6:
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Fare;
+            break;  
+    }
+
+    FirstTreeNode->predSurvival = calcSurvProp(data);
+
+
+    
+
+
+
+
+
+
+
 
     //ONLY FOR DEBUGGING \/:
 

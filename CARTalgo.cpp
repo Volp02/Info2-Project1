@@ -6,8 +6,10 @@
 #include "readFile.h"       //for Passenger struct
 #include "calculateGini.h"       //for minGiniAttribute and CalcProb
 
+using namespace std;
 
-std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger> &data, int attribute)
+
+vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribute)
 {
 
     std::vector<Passenger> sortedData;
@@ -174,7 +176,7 @@ std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger> &data, i
     return sortedData;
 }
 
-bool trainCart(TreeNode *prevNode, int desiredDepth, vector<Passenger> &data){
+bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
     if (prevNode->isLeaf){
         return false;
     }

@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 0;
+    int desiredDepth = 7;
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -25,6 +25,8 @@ int main()
     }
 
     //create first tree node (root)
+
+    //-----------------------------------------------------------FIRST_TREE_NODE
 
     TreeNode *FirstTreeNode = new TreeNode();
     FirstTreeNode->depth = 0;
@@ -57,6 +59,13 @@ int main()
     }
 
     FirstTreeNode->predSurvival = calcSurvProp(data);
+
+     //-----------------------------------------------------------
+
+  
+      //  trainCart(FirstTreeNode, desiredDepth, FirstNode.linkeSeite);
+
+         //trainCart(FirstTreeNode, desiredDepth, FirstNode.rechteSeite);
 
 
     

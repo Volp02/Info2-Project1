@@ -45,10 +45,11 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
                 minGini.rechteSeite = rechteSeite;
                 minGini.gini = tmp_weighted_gini;
                 std::cout << "new Lowes Gini: " << minGini.gini << std::endl;
-                if (minGini.gini == 0)
+                /* if (minGini.gini == 0)
                 {
                     std::cout << "leaf found: " << minGini.attribute << std::endl;
                 }
+                */
             }
         }
         //std::cout << "tmpgini: " << tmp_gini << std::endl;

@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 16;
+    int desiredDepth = 20;
     // Create a vector to store the passengers
     vector<Passenger> data;
 

@@ -35,6 +35,19 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
     }
     //cout << endl << endl << "min gini: " << minGini.gini;
     //cout << endl << "--------------------" << endl;
+
+    //debugging:
+
+    /* if (sizeof(minGini.linkeSeite) < 50)
+    {
+        std::cout << "Vector kleiner 2!" << std::endl;
+    }
+    if (sizeof(minGini.rechteSeite) < 50)
+    {
+        std::cout << "Vector kleiner 2!" << std::endl;
+    }
+    */
+
     return minGini;
 
 }

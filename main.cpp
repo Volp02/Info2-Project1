@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 7;
+    int desiredDepth = 16;
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -59,13 +59,14 @@ int main()
     }
 
     FirstTreeNode->predSurvival = calcSurvProp(data);
+    FirstTreeNode->isLeaf = false;
 
      //-----------------------------------------------------------
 
   
-      //  trainCart(FirstTreeNode, desiredDepth, FirstNode.linkeSeite);
+      trainCart(FirstTreeNode, desiredDepth, FirstNode.linkeSeite);
 
-         //trainCart(FirstTreeNode, desiredDepth, FirstNode.rechteSeite);
+      trainCart(FirstTreeNode, desiredDepth, FirstNode.rechteSeite);
 
 
     
@@ -82,7 +83,8 @@ int main()
 
     //Testing: print all passengers
 
-    for (int i = 0; i < data.size() ; i++) {
+  /* for (int i = 0; i < data.size(); i++)
+      {
         cout << "Num: "<< data[i].Num << endl;
         cout << "age: " << data[i].Age << endl;
         cout << "Class: "  << data[i].Pclass << endl;
@@ -92,7 +94,7 @@ int main()
         cout << "Parch: " << data[i].Paren << endl;
         cout << "Fare: " << data[i].Fare << endl;
         cout << endl;
-    }
+    }*/
     
 
     cout << "CalculateSurvivalProp:" << calcSurvProp(data) << endl;
@@ -152,7 +154,7 @@ int main()
     cout<<"gini 2 Ebene 1:" <<(minGiniAttribute(tmp.linkeSeite,1)).gini <<endl;
     cout<<"gini 2 Ebene 2:" <<(minGiniAttribute(tmp.rechteSeite,1)).gini <<endl;
 
-    for (int i = 0; i < tmp.linkeSeite.size(); i++)
+    /* for (int i = 0; i < tmp.linkeSeite.size(); i++)
     {
         cout << "Num: " << tmp.linkeSeite[i].Num << endl;
         cout << "age: " << tmp.linkeSeite[i].Age << endl;
@@ -163,7 +165,7 @@ int main()
         cout << "Parch: " << tmp.linkeSeite[i].Paren << endl;
         cout << "Fare: " << tmp.linkeSeite[i].Fare << endl;
         cout << endl;
-    }
+    }*/
 
 
 

@@ -177,20 +177,32 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
 }
 
 bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
+
+
+    //std::cout << "enters trainCart" << std::endl;
     if (prevNode->isLeaf){
+        std::cout << "enters isLeaf" << std::endl;
         return false;
+       
     }
-    if (prevNode->depth >= desiredDepth) {        
+    if (prevNode->depth >= desiredDepth) {
+        //std::cout << "enters Depth" << std::endl;
         prevNode->isLeaf = true;
         return false;
     }
-    if(calcBinaryGini(calcSurvProp(data))){
+    if(calcBinaryGini(calcSurvProp(data))==0){
         prevNode->isLeaf = true;
+        std::cout << std::endl << "**************LEAFFF****************" << std::endl << std::endl;
         return false;
     }
 
     TreeNode *leftNode = new TreeNode();
     TreeNode *rightNode = new TreeNode();
+
+    //debugging
+
+    //std::cout << "Durchlauf" << std::endl;
+    //debugging
 
     calcMin Split = minGiniAttribute(data, 1);
 
@@ -200,6 +212,11 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     prevNode->attribute = Split.attribute;
 
     //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
+    if (sizeof(Split.linkeSeite) < 5)
+    {
+        std::cout << "size: " << sizeof(Split.linkeSeite) << std::endl;
+        std::cout << "size: " << sizeof(Split.rechteSeite) << std::endl;
+    }
 
     switch(prevNode->attribute){       //get the split value
         case 1:
@@ -230,7 +247,15 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     prevNode->left = leftNode;
     prevNode->right = rightNode;
 
+    float tempGini = calcBinaryGini(calcSurvProp(data));
 
+    if (tempGini < 0.41)
+        std::cout << "Gini: " << calcBinaryGini(calcSurvProp(data)) << std::endl;
+    else
+        std::cout << ".";
+   
+
+    
     trainCart(leftNode, desiredDepth, Split.linkeSeite);
     trainCart(rightNode, desiredDepth, Split.rechteSeite);
 

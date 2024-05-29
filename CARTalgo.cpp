@@ -166,133 +166,78 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
     return sortedData;
 }
 
+float getSplitValue(const calcMin &split, int attribute)
+{
+    switch (attribute)
+    {
+    case 1:
+        return split.linkeSeite.back().Pclass;
+    case 2:
+        return split.linkeSeite.back().Sex;
+    case 3:
+        return split.linkeSeite.back().Age;
+    case 4:
+        return split.linkeSeite.back().Sibl;
+    case 5:
+        return split.linkeSeite.back().Paren;
+    case 6:
+        return split.linkeSeite.back().Fare;
+    default:
+        throw invalid_argument("Invalid attribute");
+    }
+}
+
 bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
 
-    std::cout << "in function trainCart" << std::endl;
 
-    /*for (int i = 0; i < data.size(); i++)
+    cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl;
+    
+    if (data.empty())
     {
-        cout << "Num: " << data[i].Num << endl;
-        cout << "age: " << data[i].Age << endl;
-        cout << "Class: " << data[i].Pclass << endl;
-        cout << "Survived: " << data[i].Surv << endl;
-        cout << "Sex: " << data[i].Sex << endl;
-        cout << "Sibsp: " << data[i].Sibl << endl;
-        cout << "Parch: " << data[i].Paren << endl;
-        cout << "Fare: " << data[i].Fare << endl;
-        cout << endl;
-    }
-    */ 
-
-    if (size(data) == 0)
-    {
-        std::cout << "size = 0 ----------------";
-        return false;
-    }
-
-    //std::cout << "enters trainCart" << std::endl;
-    if (prevNode->isLeaf){
-        std::cout << "enters isLeaf - reason: prev node is leaf" << std::endl;
-        return false;
-       
-    }
-    if (prevNode->depth >= desiredDepth) {
-        //std::cout << "enters Depth" << std::endl;
+        cout << "Empty data set, marking node as leaf." << endl;
         prevNode->isLeaf = true;
         return false;
     }
-    if (calcSurvProp(data) == 0 || calcSurvProp(data)==1)
-        {
-        prevNode->isLeaf = true;
 
+    float survProp = calcSurvProp(data);
+    if (prevNode->depth >= desiredDepth || survProp == 0 || survProp == 1)
+    {
+        //cout << "Pure node or depth limit reached, marking node as leaf." << endl;
+        prevNode->isLeaf = true;
         return false;
     }
 
     TreeNode *leftNode = new TreeNode();
     TreeNode *rightNode = new TreeNode();
-
-    calcMin *Split = new calcMin();
-    Split->attribute = minGiniAttribute(data, 1).attribute;
-    Split->gini = minGiniAttribute(data, 1).gini;
-
-    Split->linkeSeite = minGiniAttribute(data, 1).linkeSeite;
-    Split->rechteSeite = minGiniAttribute(data, 1).rechteSeite;
+    calcMin split = minGiniAttribute(data);
 
     leftNode->prev = prevNode;
     rightNode->prev = prevNode;
 
-    prevNode->attribute = Split->attribute;
-    std::cout << "assigned Tree node: " << prevNode->depth << " attribute: " << Split->attribute << endl;
-
-    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
-
-
-
-    //DEBUGGING:
-    if (size(Split->linkeSeite) < 5)
-    {
-        std::cout << "size: " << size(Split->linkeSeite) << std::endl;
-        std::cout << "size: " << size(Split->rechteSeite) << std::endl;
-    }
-    //end
-
-
-    switch(prevNode->attribute){       //get the split value
-        case 1:
-            prevNode->SplitValue = Split->linkeSeite.back().Pclass;
-            break;
-        case 2:
-            prevNode->SplitValue = Split->linkeSeite.back().Sex;
-            break;
-        case 3:
-            prevNode->SplitValue = Split->linkeSeite.back().Age;
-            break;  
-        case 4:
-            prevNode->SplitValue = Split->linkeSeite.back().Sibl;
-            break;  
-        case 5:
-            prevNode->SplitValue = Split->linkeSeite.back().Paren;
-            break;  
-        case 6:
-            prevNode->SplitValue = Split->linkeSeite.back().Fare;
-            break;  
-    }
-
-    prevNode->predSurvival = calcSurvProp(Split->linkeSeite) + calcSurvProp(Split->rechteSeite);
-
-    leftNode->depth = prevNode->depth + 1;
-    rightNode->depth = prevNode->depth + 1;
-    //std::cout << "Depth: " << prevNode->depth << std::endl;
     prevNode->left = leftNode;
     prevNode->right = rightNode;
 
-    float tempGini = calcBinaryGini(calcSurvProp(data));
+    prevNode->attribute = split.attribute;
+    prevNode->SplitValue = getSplitValue(split, split.attribute);
+    prevNode->predSurvival = calcSurvProp(data);
 
-    if (tempGini < 0.42)
-        std::cout << "Gini: " << tempGini << std::endl;
-    else
-        //std::cout << tempGini<std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;<std::endl;
+    leftNode->predSurvival = calcSurvProp(split.linkeSeite);
+    rightNode->predSurvival = calcSurvProp(split.rechteSeite);
 
-    if(prevNode->SplitValue<2){
-        std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;
-    
-    }
-
-    if (size(Split->linkeSeite) > 0)
-    {
-        trainCart(leftNode, desiredDepth, Split->linkeSeite);
-    }
-    if (size(Split->rechteSeite) > 0)
-    {
-        trainCart(rightNode, desiredDepth, Split->rechteSeite);
-    }
-    
-    delete Split;
-
-    std::cout << "returning from trainCart" << std::endl;
+    leftNode->depth = prevNode->depth + 1;
+    rightNode->depth = prevNode->depth + 1;
 
 
+
+    trainCart(leftNode, desiredDepth, split.linkeSeite);
+    trainCart(rightNode, desiredDepth, split.rechteSeite);
+
+
+    //cout << "predicted Survival Rate for current node: " << prevNode->predSurvival << endl;
+    //cout << "Gini for current node: " << calcBinaryGini(calcSurvProp(data)) << endl;
+    //cout << "WeightedGini for current node: " << calcWeigtedGini(split.linkeSeite, split.rechteSeite) << endl;
     return true;
 
+    //std::cout << tempGini<std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;<std::endl;
 
 }

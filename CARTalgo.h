@@ -11,5 +11,8 @@ struct calcMin;
 // Function declaration for sorting a vector of Passengers based on an attribute
 std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger>& data, int attribute);       //returns a vector of Passengers sorted based on an attribute: 1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
 
+float getSplitValue(const calcMin &split, int attribute);
+
+
 // Function declaration for calculating the entropy of a vector of Passengers
 bool trainCart(TreeNode *prevNode, int desiredDepth, const std::vector<Passenger> &data);

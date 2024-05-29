@@ -6,7 +6,7 @@
 // Forward declaration of Passenger struct and TreeNode struct
 struct Passenger;
 struct TreeNode;
-
+struct calcMin;
 
 // Function declaration for sorting a vector of Passengers based on an attribute
 std::vector<Passenger> sortVectorAttribute(const std::vector<Passenger>& data, int attribute);       //returns a vector of Passengers sorted based on an attribute: 1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare

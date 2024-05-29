@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 20;
+    int desiredDepth = 16;
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -25,6 +25,21 @@ int main()
     }
 
     //create first tree node (root)
+
+    /* for (int i = 0; i < data.size(); i++)
+    {
+        cout << "Num: " << data[i].Num << endl;
+        cout << "age: " << data[i].Age << endl;
+        cout << "Class: " << data[i].Pclass << endl;
+        cout << "Survived: " << data[i].Surv << endl;
+        cout << "Sex: " << data[i].Sex << endl;
+        cout << "Sibsp: " << data[i].Sibl << endl;
+        cout << "Parch: " << data[i].Paren << endl;
+        cout << "Fare: " << data[i].Fare << endl;
+        cout << endl;
+    }
+    */
+
 
     //-----------------------------------------------------------FIRST_TREE_NODE
 
@@ -143,7 +158,7 @@ int main()
     */
 
     //Testing Splitting
-    vector<Passenger> data2 = splitVector(data, 1).rechteSeite;
+    /*vector<Passenger> data2 = splitVector(data, 1).rechteSeite;
     vector<Passenger> data3 = splitVector(data, 1).linkeSeite;
     minGiniAttribute(data, 1);
     cout << "Gini afer Sort and Split: " << minGiniAttribute(data2, 1).gini << endl;
@@ -153,7 +168,7 @@ int main()
     tmp = minGiniAttribute(data,1);
     cout<<"gini 2 Ebene 1:" <<(minGiniAttribute(tmp.linkeSeite,1)).gini <<endl;
     cout<<"gini 2 Ebene 2:" <<(minGiniAttribute(tmp.rechteSeite,1)).gini <<endl;
-
+    */ 
     /* for (int i = 0; i < tmp.linkeSeite.size(); i++)
     {
         cout << "Num: " << tmp.linkeSeite[i].Num << endl;

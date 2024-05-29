@@ -15,6 +15,12 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
     std::vector<Passenger> sortedData;
     std::vector<Passenger> helperVector;
     std::vector<Passenger> helperVector2;
+
+    if (sizeof(data) == 0)
+    {
+        return sortedData;
+    }
+
     sortedData.assign(data.begin(), data.end()); //creates new vector and assigns data to it
 
     //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare

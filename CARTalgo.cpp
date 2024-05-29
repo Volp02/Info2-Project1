@@ -269,9 +269,16 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
         std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;
     
     }
+
+    if (sizeof(Split.linkeSeite) > 0)
+    {
+        trainCart(leftNode, desiredDepth, Split.linkeSeite);
+    }
+    if (sizeof(Split.rechteSeite) > 0)
+    {
+        trainCart(rightNode, desiredDepth, Split.rechteSeite);
+    }
     
-    trainCart(leftNode, desiredDepth, Split.linkeSeite);
-    trainCart(rightNode, desiredDepth, Split.rechteSeite);
 
     return true;
 

@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 20;
+    int desiredDepth = 17;
     // Create a vector to store the passengers
     vector<Passenger> data;
 
@@ -39,22 +39,22 @@ int main()
 
     switch(FirstTreeNode->attribute){       //get the split value
         case 1:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Pclass;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Pclass;
             break;
         case 2:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Sex;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Sex;
             break;
         case 3:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Age;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Age;
             break;  
         case 4:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Sibl;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Sibl;
             break;  
         case 5:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Paren;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Paren;
             break;  
         case 6:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite[sizeof(FirstNode.linkeSeite) - 1].Fare;
+            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Fare;
             break;  
     }
 

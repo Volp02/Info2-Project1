@@ -178,6 +178,11 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
 
 bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
 
+    if (sizeof(data) == 0)
+    {
+        std::cout << "size = 0 ----------------";
+        return false;
+    }
 
     //std::cout << "enters trainCart" << std::endl;
     if (prevNode->isLeaf){

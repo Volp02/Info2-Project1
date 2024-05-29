@@ -17,7 +17,7 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
 
     calcMin minGini;                    //create struct to store min gini
     minGini.attribute = attribute;      //store attribute in struct
-
+    if(sizeof(data) == 0){return minGini;}
     for (int i = 1; i < sizeof(data); i++)
     {
         linkeSeite.assign(data.begin(), data.end() - sizeof(data) - i);

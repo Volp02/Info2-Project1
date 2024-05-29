@@ -189,6 +189,8 @@ float getSplitValue(const calcMin &split, int attribute)
 
 bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
 
+    std::cout << "\033[2J\033[1;1H";        //clear Terminal
+
 
     cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl;
     

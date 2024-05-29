@@ -14,10 +14,12 @@ using namespace std;
 
 int main()
 {
-    int desiredDepth = 5;
+    cout << "input desired depth: ";
+    int desiredDepth;
+    cin >> desiredDepth;
     // Create a vector to store the passengers
     vector<Passenger> data;
-
+    cout << "reading file..." << endl;
     if (!importData(data))      //Import data from titanic.csv to vector data
     {
         cerr << "Error reading passenger data!" << endl;
@@ -69,7 +71,11 @@ int main()
 
     trainCart(FirstTreeNode, desiredDepth, FirstNode.rechteSeite);
 
+    std::cout << "\033[2J\033[1;1H";        //clear Terminal output
 
+    cout << "click anything to exit...";
+    string tmp;
+    cin >> tmp;
     return 0;
 }
 

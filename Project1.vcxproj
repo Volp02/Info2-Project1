@@ -132,11 +132,9 @@
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="calculateGini.cpp" />
     <ClCompile Include="CARTalgo.cpp" />
-    <ClCompile Include="addToTree.cpp" />
     <ClCompile Include="useTree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="addToTree.h" />
     <ClInclude Include="calculateGini.h" />
     <ClInclude Include="CARTalgo.h" />
     <ClInclude Include="useTree.h" />

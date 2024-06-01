@@ -10,7 +10,7 @@ struct Passenger;
 struct calcMin
 {
     float gini = 1;
-    int attribute;
+    int attribute = 0;
     std::vector<Passenger> linkeSeite;
     std::vector<Passenger> rechteSeite;
 };

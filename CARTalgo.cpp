@@ -2,8 +2,8 @@
 //CARTalgo
 #include <iostream>
 #include <vector>
-#include "addToTree.h"      //for TreeNode
 #include "readFile.h"       //for Passenger struct
+#include "intervals.h"      //for struct calcMin
 #include "calculateGini.h"       //for minGiniAttribute and CalcProb
 
 using namespace std;
@@ -66,7 +66,7 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
                     sortedData[j].Sex = temp;
                 }
             }
-        } while (temp != sortedData[0].Sex); // false = keine Vertauschung
+        } while (temp != static_cast<int>(sortedData[0].Sex)); // false = keine Vertauschung
         break;
     }
 
@@ -171,17 +171,17 @@ float getSplitValue(const calcMin &split, int attribute)
     switch (attribute)
     {
     case 1:
-        return split.linkeSeite.back().Pclass;
+        return static_cast<float>(split.linkeSeite.back().Pclass);
     case 2:
-        return split.linkeSeite.back().Sex;
+        return static_cast<float>(split.linkeSeite.back().Sex);
     case 3:
-        return split.linkeSeite.back().Age;
+        return static_cast<float>(split.linkeSeite.back().Age);
     case 4:
-        return split.linkeSeite.back().Sibl;
+        return static_cast<float>(split.linkeSeite.back().Sibl);
     case 5:
-        return split.linkeSeite.back().Paren;
+        return static_cast<float>(split.linkeSeite.back().Paren);
     case 6:
-        return split.linkeSeite.back().Fare;
+        return static_cast<float>(split.linkeSeite.back().Fare);
     default:
         throw invalid_argument("Invalid attribute");
     }

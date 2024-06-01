@@ -9,7 +9,6 @@ using namespace std;
 #include "calculateGini.h"
 #include "CARTalgo.h"
 #include "intervals.h"
-#include "addToTree.h"
 #include "useTree.h"
 
 int main()
@@ -42,22 +41,22 @@ int main()
 
     switch(FirstTreeNode->attribute){       //get the split value
         case 1:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Pclass;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Pclass);
             break;
         case 2:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Sex;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Sex);
             break;
         case 3:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Age;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Age);
             break;  
         case 4:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Sibl;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Sibl);
             break;  
         case 5:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Paren;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Paren);
             break;  
         case 6:
-            FirstTreeNode->SplitValue = FirstNode.linkeSeite.back().Fare;
+            FirstTreeNode->SplitValue = static_cast<float>(FirstNode.linkeSeite.back().Fare);
             break;  
     }
 

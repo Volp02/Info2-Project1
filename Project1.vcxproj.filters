@@ -30,9 +30,6 @@
     <ClCompile Include="intervals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="addToTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="useTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="intervals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="addToTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="useTree.h">

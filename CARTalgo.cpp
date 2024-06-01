@@ -168,6 +168,8 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
 
 float getSplitValue(const calcMin &split, int attribute)
 {
+    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
+
     switch (attribute)
     {
     case 1:
@@ -192,7 +194,7 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     std::cout << "\033[2J\033[1;1H";        //clear Terminal
 
 
-    cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl;
+    cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl << endl;
     
     if (data.empty())
     {
@@ -202,9 +204,10 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     }
 
     float survProp = calcSurvProp(data);
+    
     if (prevNode->depth >= desiredDepth || survProp == 0 || survProp == 1)
     {
-        //cout << "Pure node or depth limit reached, marking node as leaf." << endl;
+        cout << "Pure node or depth limit reached, marking node as leaf." << endl;
         prevNode->isLeaf = true;
         return false;
     }
@@ -223,8 +226,31 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     prevNode->SplitValue = getSplitValue(split, split.attribute);
     prevNode->predSurvival = calcSurvProp(data);
 
-    leftNode->predSurvival = calcSurvProp(split.linkeSeite);
-    rightNode->predSurvival = calcSurvProp(split.rechteSeite);
+    //determin class of Node
+    if (calcSurvProp(split.linkeSeite)  >= 0.5)
+    {
+        cout << "survival over 0.5 for left side" << endl;
+        leftNode->predSurvival = true;
+    }
+    else
+    {
+        leftNode->predSurvival = false;
+        cout << "survival under 0.5 for left side" << endl;
+    }
+
+    if (calcSurvProp(split.rechteSeite) >= 0.5)
+    {
+        cout << "survival over 0.5 for right side" << endl;
+        rightNode->predSurvival = true;
+    }
+    else
+    {
+        rightNode->predSurvival = false;
+        cout << "survival under 0.5 for right side" << endl;
+    }
+
+    leftNode->confidence = calcSurvProp(split.linkeSeite);
+    rightNode->confidence = calcSurvProp(split.rechteSeite);
 
     leftNode->depth = prevNode->depth + 1;
     rightNode->depth = prevNode->depth + 1;

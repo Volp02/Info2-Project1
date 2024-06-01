@@ -75,6 +75,18 @@ int main()
     cout << "click anything to exit...";
     string tmp;
     cin >> tmp;
+
+    while (getPrediction(usrInputPassenger(), *FirstTreeNode))
+    {
+        cout << "type exit to exit: ";
+        cin >> tmp;
+        std::cout << "\033[2J\033[1;1H"; //clear Terminal output
+        if (tmp == "exit")
+        {
+            return 0;
+        }
+    }
+
     return 0;
 }
 

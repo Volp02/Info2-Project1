@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-#define dimensions 3
 
 using namespace std;
 

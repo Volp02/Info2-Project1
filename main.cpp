@@ -13,8 +13,6 @@ SPDX-License-Identifier: MIT
 
 #include <iostream>
 #include <vector>
-#include <tuple>
-#include <fstream>
 
 using namespace std;
 

@@ -9,6 +9,8 @@ Wir stimmen der Veröffentlichung unseres Source Code mit Namensnennung zu.
 
 Copyright (C) [2024] [authors #1-#3]
 SPDX-License-Identifier: MIT
+
+Github link: https://github.com/Volp02/Info2-Project1.git 
 */
 
 #include <iostream>

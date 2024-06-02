@@ -11,7 +11,7 @@ float calcSurvProp(const std::vector<Passenger>& dataSet) {
     for (int i = 0; i < dataSet.size(); ++i) {
         if (dataSet[i].Surv) survived++;
     }
-    return survived / float(dataSet.size());
+    return static_cast<float>(survived) / static_cast<float>(dataSet.size());
 }
 
 float calcBinaryGini(float P){

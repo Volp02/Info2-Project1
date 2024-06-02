@@ -92,7 +92,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
         switch (attribute)
         {
         case 1:
-            if (passenger->Pclass <= current->SplitValue)
+            if (static_cast<float>(passenger->Pclass) <= current->SplitValue)
             {
                 current = current->left;
             }
@@ -108,7 +108,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
             break;
 
         case 3:
-            if (passenger->Age <= current->SplitValue)
+            if (static_cast<float>(passenger->Age) <= current->SplitValue)
             {
                 current = current->left;
             }
@@ -116,7 +116,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
             break;
 
         case 4:
-            if (passenger->Sibl <= current->SplitValue)
+            if (static_cast<float>(passenger->Sibl) <= current->SplitValue)
             {
                 current = current->left;
             }
@@ -124,7 +124,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
             break;
 
         case 5:
-            if (passenger->Paren <= current->SplitValue)
+            if (static_cast<float>(passenger->Paren) <= current->SplitValue)
             {
                 current = current->left;
             }
@@ -132,7 +132,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
             break;
 
         case 6:
-            if (passenger->Fare <= current->SplitValue)
+            if (static_cast<float>(passenger->Fare) <= current->SplitValue)
             {
                 current = current->left;
             }
@@ -146,16 +146,17 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
         
     }
 
+    cout << "The predicted outcome of the provided Passenger is:";
 
-    if (current != nullptr && current->predSurvival > 0.5)
+    if (current != nullptr && current->predSurvival)
     {
-        cout << "The predicted outcome of the provided Passenger is: not surviving!" << endl;
-        cout << "confidence: " << (current->confidence) * 100 << "%" << endl;
+        cout << " surviving !" << endl;
+        cout << "confidence: " << static_cast<float>(current->confidence) * 100 << "%" << endl;
     }
-    else if (current != nullptr && current->predSurvival < 0.5)
+    else if (current != nullptr && !current->predSurvival)
     {
-        cout << "The predicted outcome of the provided Passenger is: surviving!" << endl;
-        cout << "confidence: " << (1 - current->predSurvival) * 100 << "%" << endl;
+        cout << " not surviving!" << endl;
+        cout << "confidence: " << (static_cast<float>(current->confidence)) * 100 << "%" << endl;
         
     }
     else

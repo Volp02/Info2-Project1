@@ -195,7 +195,9 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
 
 
     cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl << endl;
-    
+
+    prevNode->predSurvival = calcSurvProp(data) >= 0.5;
+
     if (data.empty())
     {
         cout << "Empty data set, marking node as leaf." << endl;
@@ -209,6 +211,7 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     {
         cout << "Pure node or depth limit reached, marking node as leaf." << endl;
         prevNode->isLeaf = true;
+        prevNode->confidence = 1;
         return false;
     }
 
@@ -226,31 +229,17 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     prevNode->SplitValue = getSplitValue(split, split.attribute);
     prevNode->predSurvival = calcSurvProp(data);
 
-    //determin class of Node
-    if (calcSurvProp(split.linkeSeite)  >= 0.5)
-    {
-        cout << "survival over 0.5 for left side" << endl;
-        leftNode->predSurvival = true;
-    }
-    else
-    {
-        leftNode->predSurvival = false;
-        cout << "survival under 0.5 for left side" << endl;
-    }
+    // Calculate survival proportions for child nodes
+    float leftSurvProp = calcSurvProp(split.linkeSeite);
+    float rightSurvProp = calcSurvProp(split.rechteSeite);
 
-    if (calcSurvProp(split.rechteSeite) >= 0.5)
-    {
-        cout << "survival over 0.5 for right side" << endl;
-        rightNode->predSurvival = true;
-    }
-    else
-    {
-        rightNode->predSurvival = false;
-        cout << "survival under 0.5 for right side" << endl;
-    }
+    // Assign survival prediction and confidence for left node
+    leftNode->predSurvival = (leftSurvProp >= 0.5);
+    leftNode->confidence = leftSurvProp;
 
-    leftNode->confidence = calcSurvProp(split.linkeSeite);
-    rightNode->confidence = calcSurvProp(split.rechteSeite);
+    // Assign survival prediction and confidence for right node
+    rightNode->predSurvival = (rightSurvProp >= 0.5);
+    rightNode->confidence = rightSurvProp;
 
     leftNode->depth = prevNode->depth + 1;
     rightNode->depth = prevNode->depth + 1;

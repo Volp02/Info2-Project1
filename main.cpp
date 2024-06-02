@@ -1,3 +1,16 @@
+/*
+Projektarbeit 1 – Titanic
+Gruppe:
+[Andreas Manuel Runge #1]
+[Matthias Friedl  #2]
+[Lajos Billes #3]
+
+Wir stimmen der Veröffentlichung unseres Source Code mit Namensnennung zu.
+
+Copyright (C) [2024] [authors #1-#3]
+SPDX-License-Identifier: MIT
+*/
+
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -5,6 +18,7 @@
 
 using namespace std;
 
+//import header files
 #include "readFile.h"
 #include "calculateGini.h"
 #include "CARTalgo.h"
@@ -13,9 +27,11 @@ using namespace std;
 
 int main()
 {
+    //get desired depth
     cout << "input desired depth: ";
     int desiredDepth;
     cin >> desiredDepth;
+
     // Create a vector to store the passengers
     vector<Passenger> data;
     cout << "reading file..." << endl;
@@ -25,10 +41,9 @@ int main()
         return 1; // Exit with an error code
     }
 
+
+
     //create first tree node (root)
-
-
-    //-----------------------------------------------------------FIRST_TREE_NODE
 
     TreeNode *FirstTreeNode = new TreeNode();
     FirstTreeNode->depth = 0;
@@ -60,18 +75,16 @@ int main()
             break;  
     }
 
-    FirstTreeNode->predSurvival = calcSurvProp(data);
     FirstTreeNode->isLeaf = false;
 
-     //-----------------------------------------------------------
 
-  
+  //start training the tree with recursion:
     trainCart(FirstTreeNode, desiredDepth, FirstNode.linkeSeite);
-
     trainCart(FirstTreeNode, desiredDepth, FirstNode.rechteSeite);
 
     std::cout << "\033[2J\033[1;1H";        //clear Terminal output
 
+    //input loop
     while (getPrediction(usrInputPassenger(), *FirstTreeNode))
     {
         string tmp;
@@ -84,6 +97,7 @@ int main()
         }
     }
 
+    cout << "an error occured" << endl;
     return 0;
 }
 

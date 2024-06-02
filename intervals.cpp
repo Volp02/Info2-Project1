@@ -7,7 +7,7 @@
 
 
 using namespace std;
-
+//splitVector splits the data into two vectors based on the attribute value and returns the resulting vectors with the lowes gini
 calcMin splitVector(const std::vector<Passenger> &data, int attribute)
 {
 
@@ -30,10 +30,9 @@ calcMin splitVector(const std::vector<Passenger> &data, int attribute)
     }
 
     return minGini;
-    
-
 }
 
+//sortVectorAttribute sorts the data based on the attribute value and returns the sorted vector
 calcMin minGiniAttribute(const std::vector<Passenger> &data)
 {
     calcMin bestSplit;
@@ -52,4 +51,3 @@ calcMin minGiniAttribute(const std::vector<Passenger> &data)
 
     return bestSplit;
 }
-

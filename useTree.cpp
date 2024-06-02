@@ -4,15 +4,16 @@
 
 using namespace std;
 
+// Function to get user input for a passenger
 Passenger *usrInputPassenger()
 {
-    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
     std::cout << "Enter passenger attributes:\n";
 
     int int_input;
     std::string str_input;
     float fare_input;
 
+    // Create a new Passenger object for user input passenger
     Passenger *inputPassenger = new Passenger;
 
     // 1. Class
@@ -22,7 +23,7 @@ Passenger *usrInputPassenger()
         std::cout << "Invalid input. Please enter an integer: ";
         // Clear input error state and discard any remaining invalid characters
         std::cin.clear();
-        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');       //works only on windows?
     }
     inputPassenger->Pclass = int_input;
 
@@ -69,7 +70,7 @@ Passenger *usrInputPassenger()
     {
         std::cout << "Invalid input. Please enter a number: ";
         std::cin.clear();
-        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');   //works only on windows?
     }
     inputPassenger->Fare = fare_input;
     cout << endl;
@@ -77,18 +78,21 @@ Passenger *usrInputPassenger()
 
 }
 
+// Function to get prediction from the decision tree
 bool getPrediction(Passenger* passenger, TreeNode &root)
 {
 
+    //set current node to root
     TreeNode *current = &root; // Point to the root node
 
-
+    // Traverse the tree until a leaf node is reached
     while (current != nullptr && !current->isLeaf)
     {
         int attribute = current->attribute;
 
         //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
 
+        //moves to the next node based on the attribute value and split value
         switch (attribute)
         {
         case 1:
@@ -146,6 +150,7 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
         
     }
 
+    //Output of the prediction
     cout << "The predicted outcome of the provided Passenger is:";
 
     if (current != nullptr && current->predSurvival)

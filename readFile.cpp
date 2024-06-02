@@ -16,8 +16,8 @@ int findComma(string Input);
 
 string readBetween(string Input, int x1, int x2);
 
-// Hauptfunktion für Aufgabe 2
-
+// Hauptfunktion fï¿½r Aufgabe 2
+//reads the csv file and returns a vector of passengers
 Passenger* readFile(int line)
 {   
     std::ifstream data("titanic.csv"); // Dateipfad zur CSV-Datei
@@ -42,17 +42,14 @@ Passenger* readFile(int line)
 
     int Kommastelle = 0; // Position des Kommas im aktuellen Text
 
-    // Ausgabe der Zeile mit Zeilennummer
-    // //cout << count << " :" << textFromFile << endl;
-
     Passenger* passenger = new Passenger;
 
     passenger->Num = line;
 
-    // Kopie der Zeile für die Bearbeitung
+    // Kopie der Zeile fï¿½r die Bearbeitung
     string tempText = textFromFile;
 
-    // Startposition für die Suche nach Kommas
+    // Startposition fï¿½r die Suche nach Kommas
     int beforeKommastelle = 0;
 
     // Array zur Speicherung der sicheren Positionen der Kommas
@@ -62,34 +59,29 @@ Passenger* readFile(int line)
     // Schleife zur Suche nach Kommas
     for (int i = 1; i <= 8; i++)
     {
-        // Finden der Position des nächsten Kommas und Aktualisieren der sicheren Position
+        // Finden der Position des nï¿½chsten Kommas und Aktualisieren der sicheren Position
         Kommastelle = findComma(tempText);
         KommastelleSafe[i] = Kommastelle + beforeKommastelle + 1;
 
-        // Ausgabe der sicheren Position des Kommas
-        // //cout << KommastelleSafe[i] << endl;
-
-        // Löschen des Teils des Textes vor dem gefundenen Komma
+        // Lï¿½schen des Teils des Textes vor dem gefundenen Komma
         tempText.erase(0, Kommastelle + 1);
 
-        // Aktualisieren der Startposition für die nächste Iteration
+        // Aktualisieren der Startposition fï¿½r die nï¿½chste Iteration
         beforeKommastelle = KommastelleSafe[i];
 
         std::stringstream tempSafe;
         string tempString;
-        ////cout << i << endl;
+
         switch (i)
         {
         case 1:
             tempSafe << readBetween(textFromFile, KommastelleSafe[0], KommastelleSafe[1]);
             tempSafe >> passenger->Surv;
             passenger->Surv = static_cast<bool>(passenger->Surv);
-            // //cout << "pSurv: " << Pass.pSurv << endl;
             break;
         case 2:
             tempSafe << readBetween(textFromFile, KommastelleSafe[1], KommastelleSafe[2]);
             tempSafe >> passenger->Pclass;
-            // //cout << "pPclass: " << Pass.pPclass << endl;
             break;
         case 4:
             tempString = readBetween(textFromFile, KommastelleSafe[3], KommastelleSafe[4]);
@@ -102,33 +94,30 @@ Passenger* readFile(int line)
                 passenger->Sex = false;
             }
 
-            // //cout << "TempString = " << tempString << "pSex: " << Pass.pSex << endl;
             break;
         case 5:
             tempSafe << readBetween(textFromFile, KommastelleSafe[4], KommastelleSafe[5]);
             tempSafe >> passenger->Age;
-            //cout << "pAge: " << Pass.pAge << endl;
+
             break;
         case 6:
             tempSafe << readBetween(textFromFile, KommastelleSafe[5], KommastelleSafe[6]);
             tempSafe >> passenger->Sibl;
-            //cout << "pSibl: " << Pass.pSibl << endl;
+            
             break;
         case 7:
             tempSafe << readBetween(textFromFile, KommastelleSafe[6], KommastelleSafe[7]);
             tempSafe >> passenger->Paren;
-            // //cout << "pParen: " << Pass.pParen << endl;
+          
             break;
         case 8:
 
             tempSafe << readBetween(textFromFile, KommastelleSafe[7], (textFromFile.back() - 1));
             tempSafe >> passenger->Fare;
-
-            // //cout << "pFare: " << Pass.pFare << endl;
             break;
         }
     }
-    ////cout << "returning: " << Pass.pAge << Pass.pSurv << Pass.pSibl << endl;
+    
     return passenger; //return passenger pointer
 
 }
@@ -161,7 +150,7 @@ bool importData(std::vector<Passenger> &data)
 
         int nextPassengerNum = currentPassenger->Num + 1; // Calculate the number of the next passenger
         delete currentPassenger;                          // Deallocate memory before reading the next
-        //cout << nextPassengerNum << endl;
+       
         currentPassenger = readFile(nextPassengerNum); // Read the next passenger
 
         // Check for errors after reading, before potentially adding another invalid passenger

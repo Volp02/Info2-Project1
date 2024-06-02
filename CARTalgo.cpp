@@ -8,14 +8,11 @@
 
 using namespace std;
 
-
+//sortVectorAttribute sorts the data by attribute
 vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribute)
 {
-    //std::cout << "in function sortVectorAttribute" << std::endl;
-
+  
     std::vector<Passenger> sortedData;
-    //std::vector<Passenger> helperVector;
-    //std::vector<Passenger> helperVector2;
 
     if (size(data) == 0)
     {
@@ -24,9 +21,7 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
 
     sortedData.assign(data.begin(), data.end()); //creates new vector and assigns data to it
 
-    //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
-
-
+    //switch case for bubble sorting by attribute
     switch (attribute)
     {
     case (1):
@@ -166,6 +161,7 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
     return sortedData;
 }
 
+//getSplitValue returns the value of the split attribute (value at which the data is split)
 float getSplitValue(const calcMin &split, int attribute)
 {
     //1 = Class, 2 = Sex, 3 = Age, 4 = Sibl, 5 = Parent, 6 = Fare
@@ -189,13 +185,14 @@ float getSplitValue(const calcMin &split, int attribute)
     }
 }
 
+//trainCart trains the decision tree
 bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &data){
 
     std::cout << "\033[2J\033[1;1H";        //clear Terminal
 
 
     cout << "Training node at depth " << prevNode->depth << " with " << data.size() << " data points." << endl << endl;
-
+    //set class of previous node
     prevNode->predSurvival = calcSurvProp(data) >= 0.5;
 
     if (data.empty())
@@ -214,20 +211,26 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
         return false;
     }
 
+    //create new nodes for left and right child
     TreeNode *leftNode = new TreeNode();
     TreeNode *rightNode = new TreeNode();
+    //get split dataset
     calcMin split = minGiniAttribute(data);
 
+    //link new nodes to previous node
     leftNode->prev = prevNode;
     rightNode->prev = prevNode;
 
+    //link parrent node to new nodes
     prevNode->left = leftNode;
     prevNode->right = rightNode;
 
+    //set attribute and split value for previous node
     prevNode->attribute = split.attribute;
     prevNode->SplitValue = getSplitValue(split, split.attribute);
     prevNode->predSurvival = calcSurvProp(data) >= 0.5;
     
+    // Calculate survival probabilities for previous node
     if(prevNode->predSurvival){
         prevNode->confidence = calcSurvProp(data);
     }
@@ -264,16 +267,10 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     rightNode->depth = prevNode->depth + 1;
 
 
-
+    //recursive call for left and right nodes
     trainCart(leftNode, desiredDepth, split.linkeSeite);
     trainCart(rightNode, desiredDepth, split.rechteSeite);
 
-
-    //cout << "predicted Survival Rate for current node: " << prevNode->predSurvival << endl;
-    //cout << "Gini for current node: " << calcBinaryGini(calcSurvProp(data)) << endl;
-    //cout << "WeightedGini for current node: " << calcWeigtedGini(split.linkeSeite, split.rechteSeite) << endl;
     return true;
-
-    //std::cout << tempGini<std::cout<<"split value: "<<prevNode->SplitValue<<std::endl;<std::endl;
 
 }

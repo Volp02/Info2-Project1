@@ -72,7 +72,7 @@ Passenger *usrInputPassenger()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Fare = fare_input;
-
+    cout << endl;
     return inputPassenger;
 
 }
@@ -151,12 +151,12 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
     if (current != nullptr && current->predSurvival)
     {
         cout << " surviving !" << endl;
-        cout << "confidence: " << static_cast<float>(current->confidence) * 100 << "%" << endl;
+        cout << "confidence: " << current->confidence * 100.0 << "%" << endl;
     }
     else if (current != nullptr && !current->predSurvival)
     {
         cout << " not surviving!" << endl;
-        cout << "confidence: " << (static_cast<float>(current->confidence)) * 100 << "%" << endl;
+        cout << "confidence: " << current->confidence * 100.0 << "%" << endl;
         
     }
     else

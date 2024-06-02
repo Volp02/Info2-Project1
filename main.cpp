@@ -75,7 +75,7 @@ int main()
     while (getPrediction(usrInputPassenger(), *FirstTreeNode))
     {
         string tmp;
-        cout << "type exit to exit: ";
+        cout << "type exit to exit or anything else to input another Passenger: ";
         cin >> tmp;
         std::cout << "\033[2J\033[1;1H"; //clear Terminal output
         if (tmp == "exit")
@@ -86,6 +86,5 @@ int main()
 
     return 0;
 }
-
 
 

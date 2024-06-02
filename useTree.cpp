@@ -22,7 +22,7 @@ Passenger *usrInputPassenger()
         std::cout << "Invalid input. Please enter an integer: ";
         // Clear input error state and discard any remaining invalid characters
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Pclass = int_input;
 
@@ -38,7 +38,7 @@ Passenger *usrInputPassenger()
         std::cout << "Invalid input. Please enter an integer: ";
         // Clear input error state and discard any remaining invalid characters
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Age = int_input;
 
@@ -49,7 +49,7 @@ Passenger *usrInputPassenger()
         std::cout << "Invalid input. Please enter an integer: ";
         // Clear input error state and discard any remaining invalid characters
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Sibl = int_input;
 
@@ -59,7 +59,7 @@ Passenger *usrInputPassenger()
     {
         std::cout << "Invalid input. Please enter an integer: ";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Paren = int_input;
 
@@ -69,7 +69,7 @@ Passenger *usrInputPassenger()
     {
         std::cout << "Invalid input. Please enter a number: ";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     inputPassenger->Fare = fare_input;
     cout << endl;
@@ -151,12 +151,12 @@ bool getPrediction(Passenger* passenger, TreeNode &root)
     if (current != nullptr && current->predSurvival)
     {
         cout << " surviving !" << endl;
-        cout << "confidence: " << current->confidence * 100.0 << "%" << endl;
+        cout << "confidence: " << current->confidence * 100.00 << "%" << endl;
     }
     else if (current != nullptr && !current->predSurvival)
     {
         cout << " not surviving!" << endl;
-        cout << "confidence: " << current->confidence * 100.0 << "%" << endl;
+        cout << "confidence: " << current->confidence * 100.00 << "%" << endl;
         
     }
     else

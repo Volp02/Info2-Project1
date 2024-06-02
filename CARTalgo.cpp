@@ -211,7 +211,6 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
     {
         cout << "Pure node or depth limit reached, marking node as leaf." << endl;
         prevNode->isLeaf = true;
-        prevNode->confidence = 1;
         return false;
     }
 
@@ -227,19 +226,39 @@ bool trainCart(TreeNode *prevNode, int desiredDepth,const vector<Passenger> &dat
 
     prevNode->attribute = split.attribute;
     prevNode->SplitValue = getSplitValue(split, split.attribute);
-    prevNode->predSurvival = calcSurvProp(data);
+    prevNode->predSurvival = calcSurvProp(data) >= 0.5;
+    
+    if(prevNode->predSurvival){
+        prevNode->confidence = calcSurvProp(data);
+    }
+    else{
+        prevNode->confidence = 1.0 -calcSurvProp(data);
+    }
 
-    // Calculate survival proportions for child nodes
+    // Calculate survival probabilities for child nodes
     float leftSurvProp = calcSurvProp(split.linkeSeite);
     float rightSurvProp = calcSurvProp(split.rechteSeite);
 
     // Assign survival prediction and confidence for left node
     leftNode->predSurvival = (leftSurvProp >= 0.5);
-    leftNode->confidence = leftSurvProp;
+    if(leftNode->predSurvival){
+        leftNode->confidence = leftSurvProp;
+    }
+    else{
+        leftNode->confidence = 1.0 - leftSurvProp;
+    }
+
 
     // Assign survival prediction and confidence for right node
     rightNode->predSurvival = (rightSurvProp >= 0.5);
-    rightNode->confidence = rightSurvProp;
+    if(rightNode->predSurvival){
+        rightNode->confidence = rightSurvProp;
+    }
+    else{
+        rightNode->confidence = 1.0 - rightSurvProp;
+    }
+
+    // Calculate depth for left and right nodes
 
     leftNode->depth = prevNode->depth + 1;
     rightNode->depth = prevNode->depth + 1;

@@ -72,12 +72,9 @@ int main()
 
     std::cout << "\033[2J\033[1;1H";        //clear Terminal output
 
-    cout << "click anything to exit...";
-    string tmp;
-    cin >> tmp;
-
     while (getPrediction(usrInputPassenger(), *FirstTreeNode))
     {
+        string tmp;
         cout << "type exit to exit: ";
         cin >> tmp;
         std::cout << "\033[2J\033[1;1H"; //clear Terminal output

@@ -14,7 +14,7 @@ vector<Passenger> sortVectorAttribute(const vector<Passenger> &data, int attribu
   
     std::vector<Passenger> sortedData;
 
-    if (size(data) == 0)
+    if (sizeof(data) == 0)
     {
         return sortedData;
     }
